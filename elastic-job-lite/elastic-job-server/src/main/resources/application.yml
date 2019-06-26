@@ -1,0 +1,17 @@
+server:
+  port: 7100
+spring:
+  application:
+      name: elasticjob-service
+elasticjob:
+  zookeeper:
+    serverLists: 127.0.0.1:2181
+    namespace: elasticjob
+    baseSleepTimeMilliseconds: 1000
+    maxSleepTimeMilliseconds: 3000
+    maxRetries: 3
+    sessionTimeoutMilliseconds: 60000
+    connectionTimeoutMilliseconds: 60000
+    digest:
+logging:
+  config: classpath:logback.xml

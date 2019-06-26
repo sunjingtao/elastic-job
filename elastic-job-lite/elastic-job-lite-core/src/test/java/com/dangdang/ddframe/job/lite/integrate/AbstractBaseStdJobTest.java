@@ -55,10 +55,10 @@ import static org.junit.Assert.assertTrue;
 
 public abstract class AbstractBaseStdJobTest {
     
-    private static ZookeeperConfiguration zkConfig = new ZookeeperConfiguration(EmbedTestingServer.getConnectionString(), "zkRegTestCenter");
+    private static ZookeeperConfiguration zkConfig = null ;//new ZookeeperConfiguration(EmbedTestingServer.getConnectionString(), "zkRegTestCenter");
     
     @Getter(value = AccessLevel.PROTECTED)
-    private static CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(zkConfig);
+    private static CoordinatorRegistryCenter regCenter =  null;//new ZookeeperRegistryCenter(zkConfig);
     
     @Getter(AccessLevel.PROTECTED)
     private final LiteJobConfiguration liteJobConfig;

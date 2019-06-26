@@ -37,7 +37,10 @@ import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.data.ACL;
 import org.apache.zookeeper.data.Stat;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -52,21 +55,19 @@ import java.util.concurrent.TimeUnit;
  * @author zhangliang
  */
 @Slf4j
-public final class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
+@Component
+public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
     
-    @Getter(AccessLevel.PROTECTED)
+    @Autowired
     private ZookeeperConfiguration zkConfig;
     
     private final Map<String, TreeCache> caches = new HashMap<>();
     
     @Getter
     private CuratorFramework client;
-    
-    public ZookeeperRegistryCenter(final ZookeeperConfiguration zkConfig) {
-        this.zkConfig = zkConfig;
-    }
-    
+
     @Override
+    @PostConstruct
     public void init() {
         log.debug("Elastic job: zookeeper registry center init, server lists is: {}.", zkConfig.getServerLists());
         CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder()
